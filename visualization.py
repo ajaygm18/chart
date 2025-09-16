@@ -51,7 +51,16 @@ class ChartVisualizer:
             PatternType.DESCENDING_TRIANGLE: '#FFB3BA',
             PatternType.SYMMETRICAL_TRIANGLE: '#B5EAEA',
             PatternType.FLAG: '#C7CEEA',
-            PatternType.PENNANT: '#FDBCB4'
+            PatternType.PENNANT: '#FDBCB4',
+            # New pattern colors
+            PatternType.RISING_WEDGE: '#FFD93D',
+            PatternType.FALLING_WEDGE: '#6BCF7F',
+            PatternType.RECTANGLE: '#A8DADC',
+            PatternType.ROUNDING_BOTTOM: '#F1FAEE',
+            PatternType.ROUNDING_TOP: '#E63946',
+            PatternType.TRIPLE_TOP: '#457B9D',
+            PatternType.TRIPLE_BOTTOM: '#1D3557',
+            PatternType.DIAMOND: '#F72585'
         }
         
     def plot_candlestick_chart(self, data: pd.DataFrame, patterns: List[DetectedPattern] = None,
@@ -286,6 +295,25 @@ class ChartVisualizer:
             height=800,
             showlegend=True,
             xaxis_rangeslider_visible=False
+        )
+        
+        # Configure x-axis to remove gaps for weekends and holidays
+        fig.update_xaxes(
+            rangebreaks=[
+                dict(bounds=["sat", "mon"]),  # hide weekends
+                # Common US market holidays (can be customized)
+                dict(values=[
+                    "2025-01-01",  # New Year's Day
+                    "2025-01-20",  # Martin Luther King Jr. Day
+                    "2025-02-17",  # Presidents Day
+                    "2025-04-18",  # Good Friday
+                    "2025-05-26",  # Memorial Day
+                    "2025-07-04",  # Independence Day
+                    "2025-09-01",  # Labor Day
+                    "2025-11-27",  # Thanksgiving
+                    "2025-12-25",  # Christmas Day
+                ])
+            ]
         )
         
         if save_path:

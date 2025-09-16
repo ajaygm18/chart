@@ -28,6 +28,15 @@ class PatternType(Enum):
     SYMMETRICAL_TRIANGLE = "symmetrical_triangle"
     FLAG = "flag"
     PENNANT = "pennant"
+    # New patterns
+    RISING_WEDGE = "rising_wedge"
+    FALLING_WEDGE = "falling_wedge"
+    RECTANGLE = "rectangle"
+    ROUNDING_BOTTOM = "rounding_bottom"
+    ROUNDING_TOP = "rounding_top"
+    TRIPLE_TOP = "triple_top"
+    TRIPLE_BOTTOM = "triple_bottom"
+    DIAMOND = "diamond"
 
 
 @dataclass
@@ -100,7 +109,12 @@ class PatternDetector:
         # Detect different pattern types
         self._detect_head_and_shoulders(data, peaks, valleys, price_column)
         self._detect_double_top_bottom(data, peaks, valleys, price_column)
+        self._detect_triple_top_bottom(data, peaks, valleys, price_column)
         self._detect_triangles(data, peaks, valleys, price_column)
+        self._detect_wedges(data, peaks, valleys, price_column)
+        self._detect_rectangle(data, peaks, valleys, price_column)
+        self._detect_rounding_patterns(data, peaks, valleys, price_column)
+        self._detect_diamond(data, peaks, valleys, price_column)
         self._detect_cup_and_handle(data, peaks, valleys, price_column)
         self._detect_flags_and_pennants(data, peaks, valleys, price_column)
         
@@ -603,6 +617,367 @@ class PatternDetector:
             description=f"{pattern_type.value.title()} pattern"
         )
         
+    def _detect_triple_top_bottom(self, data: pd.DataFrame, peaks: np.ndarray, valleys: np.ndarray, price_column: str):
+        """Detect Triple Top and Triple Bottom patterns."""
+        prices = data[price_column].values
+        
+        # Triple Top: Three peaks at similar levels
+        if len(peaks) >= 3:
+            for i in range(len(peaks) - 2):
+                for j in range(i + 1, len(peaks) - 1):
+                    for k in range(j + 1, len(peaks)):
+                        p1, p2, p3 = peaks[i], peaks[j], peaks[k]
+                        
+                        # Check if peaks are at similar levels (within 2% tolerance)
+                        level_tolerance = 0.02
+                        if (abs(prices[p1] - prices[p2]) / prices[p1] < level_tolerance and
+                            abs(prices[p2] - prices[p3]) / prices[p2] < level_tolerance and
+                            abs(prices[p1] - prices[p3]) / prices[p1] < level_tolerance):
+                            
+                            # Find valleys between peaks
+                            v1_candidates = valleys[(valleys > p1) & (valleys < p2)]
+                            v2_candidates = valleys[(valleys > p2) & (valleys < p3)]
+                            
+                            if len(v1_candidates) > 0 and len(v2_candidates) > 0:
+                                v1 = v1_candidates[0]
+                                v2 = v2_candidates[0]
+                                
+                                pattern = self._create_triple_pattern(data, p1, p2, p3, v1, v2, PatternType.TRIPLE_TOP)
+                                if pattern:
+                                    self.detected_patterns.append(pattern)
+        
+        # Triple Bottom: Three valleys at similar levels
+        if len(valleys) >= 3:
+            for i in range(len(valleys) - 2):
+                for j in range(i + 1, len(valleys) - 1):
+                    for k in range(j + 1, len(valleys)):
+                        v1, v2, v3 = valleys[i], valleys[j], valleys[k]
+                        
+                        # Check if valleys are at similar levels
+                        level_tolerance = 0.02
+                        if (abs(prices[v1] - prices[v2]) / prices[v1] < level_tolerance and
+                            abs(prices[v2] - prices[v3]) / prices[v2] < level_tolerance and
+                            abs(prices[v1] - prices[v3]) / prices[v1] < level_tolerance):
+                            
+                            # Find peaks between valleys
+                            p1_candidates = peaks[(peaks > v1) & (peaks < v2)]
+                            p2_candidates = peaks[(peaks > v2) & (peaks < v3)]
+                            
+                            if len(p1_candidates) > 0 and len(p2_candidates) > 0:
+                                p1 = p1_candidates[0]
+                                p2 = p2_candidates[0]
+                                
+                                pattern = self._create_triple_pattern(data, v1, v2, v3, p1, p2, PatternType.TRIPLE_BOTTOM)
+                                if pattern:
+                                    self.detected_patterns.append(pattern)
+
+    def _detect_wedges(self, data: pd.DataFrame, peaks: np.ndarray, valleys: np.ndarray, price_column: str):
+        """Detect Rising and Falling Wedge patterns."""
+        if len(peaks) < 2 or len(valleys) < 2:
+            return
+            
+        prices = data[price_column].values
+        
+        # Rising Wedge: Higher highs and higher lows but converging
+        for i in range(len(peaks) - 1):
+            for j in range(len(valleys) - 1):
+                p1, p2 = peaks[i], peaks[i + 1]
+                v1, v2 = valleys[j], valleys[j + 1]
+                
+                # Check order: v1 < p1 < v2 < p2 or similar
+                if v1 < p1 < v2 < p2 and p2 - v1 > 20:  # Minimum pattern length
+                    # Check if highs are rising and lows are rising (but converging)
+                    if prices[p2] > prices[p1] and prices[v2] > prices[v1]:
+                        # Check convergence: slope of highs should be less than slope of lows
+                        high_slope = (prices[p2] - prices[p1]) / (p2 - p1)
+                        low_slope = (prices[v2] - prices[v1]) / (v2 - v1)
+                        
+                        if 0 < high_slope < low_slope:  # Converging upward
+                            pattern = self._create_wedge_pattern(data, [p1, p2], [v1, v2], PatternType.RISING_WEDGE)
+                            if pattern:
+                                self.detected_patterns.append(pattern)
+        
+        # Falling Wedge: Lower highs and lower lows but converging
+        for i in range(len(peaks) - 1):
+            for j in range(len(valleys) - 1):
+                p1, p2 = peaks[i], peaks[i + 1]
+                v1, v2 = valleys[j], valleys[j + 1]
+                
+                if v1 < p1 < v2 < p2 and p2 - v1 > 20:
+                    # Check if highs are falling and lows are falling (but converging)
+                    if prices[p2] < prices[p1] and prices[v2] < prices[v1]:
+                        # Check convergence
+                        high_slope = (prices[p2] - prices[p1]) / (p2 - p1)
+                        low_slope = (prices[v2] - prices[v1]) / (v2 - v1)
+                        
+                        if low_slope < high_slope < 0:  # Converging downward
+                            pattern = self._create_wedge_pattern(data, [p1, p2], [v1, v2], PatternType.FALLING_WEDGE)
+                            if pattern:
+                                self.detected_patterns.append(pattern)
+
+    def _detect_rectangle(self, data: pd.DataFrame, peaks: np.ndarray, valleys: np.ndarray, price_column: str):
+        """Detect Rectangle/Channel patterns."""
+        if len(peaks) < 2 or len(valleys) < 2:
+            return
+            
+        prices = data[price_column].values
+        
+        # Rectangle: horizontal resistance and support levels
+        for i in range(len(peaks) - 1):
+            for j in range(len(valleys) - 1):
+                p1, p2 = peaks[i], peaks[i + 1]
+                v1, v2 = valleys[j], valleys[j + 1]
+                
+                # Check if resistance and support are horizontal (within tolerance)
+                resistance_tolerance = 0.015  # 1.5%
+                support_tolerance = 0.015
+                
+                if (abs(prices[p1] - prices[p2]) / prices[p1] < resistance_tolerance and
+                    abs(prices[v1] - prices[v2]) / prices[v1] < support_tolerance):
+                    
+                    # Ensure pattern spans reasonable time and space
+                    if abs(p2 - p1) > 15 and abs(v2 - v1) > 15:
+                        pattern = self._create_rectangle_pattern(data, [p1, p2], [v1, v2])
+                        if pattern:
+                            self.detected_patterns.append(pattern)
+
+    def _detect_rounding_patterns(self, data: pd.DataFrame, peaks: np.ndarray, valleys: np.ndarray, price_column: str):
+        """Detect Rounding Top and Rounding Bottom patterns."""
+        if len(data) < 30:  # Need sufficient data for rounding patterns
+            return
+            
+        prices = data[price_column].values
+        
+        # Rounding Bottom: U-shaped pattern
+        for valley in valleys:
+            # Look for rounding pattern around valley
+            start_idx = max(0, valley - 15)
+            end_idx = min(len(prices), valley + 15)
+            
+            if end_idx - start_idx >= 20:  # Minimum pattern length
+                segment = prices[start_idx:end_idx]
+                if self._is_rounding_pattern(segment, is_bottom=True):
+                    pattern = self._create_rounding_pattern(data, start_idx, end_idx, valley, PatternType.ROUNDING_BOTTOM)
+                    if pattern:
+                        self.detected_patterns.append(pattern)
+        
+        # Rounding Top: Inverted U-shaped pattern
+        for peak in peaks:
+            start_idx = max(0, peak - 15)
+            end_idx = min(len(prices), peak + 15)
+            
+            if end_idx - start_idx >= 20:
+                segment = prices[start_idx:end_idx]
+                if self._is_rounding_pattern(segment, is_bottom=False):
+                    pattern = self._create_rounding_pattern(data, start_idx, end_idx, peak, PatternType.ROUNDING_TOP)
+                    if pattern:
+                        self.detected_patterns.append(pattern)
+
+    def _detect_diamond(self, data: pd.DataFrame, peaks: np.ndarray, valleys: np.ndarray, price_column: str):
+        """Detect Diamond pattern."""
+        if len(peaks) < 3 or len(valleys) < 2:
+            return
+            
+        prices = data[price_column].values
+        
+        # Diamond: expanding then contracting pattern
+        for i in range(len(peaks) - 2):
+            for j in range(len(valleys) - 1):
+                p1, p2, p3 = peaks[i], peaks[i + 1], peaks[i + 2]
+                v1, v2 = valleys[j], valleys[j + 1]
+                
+                # Check sequence: p1 < v1 < p2 < v2 < p3
+                if p1 < v1 < p2 < v2 < p3 and p3 - p1 > 20:
+                    # Check for expansion then contraction
+                    expansion1 = abs(prices[p2] - prices[v1])
+                    expansion2 = abs(prices[p2] - prices[v2])
+                    contraction = abs(prices[p3] - prices[v2])
+                    
+                    if expansion1 > 0 and expansion2 > expansion1 and contraction < expansion2:
+                        pattern = self._create_diamond_pattern(data, [p1, p2, p3], [v1, v2])
+                        if pattern:
+                            self.detected_patterns.append(pattern)
+
+    def _create_triple_pattern(self, data: pd.DataFrame, point1: int, point2: int, point3: int,
+                              between1: int, between2: int, pattern_type: PatternType) -> DetectedPattern:
+        """Create a triple top/bottom pattern object."""
+        prices = data[data.columns[3]].values
+        dates = data.index
+        
+        if pattern_type == PatternType.TRIPLE_TOP:
+            points = [
+                PatternPoint(point1, prices[point1], str(dates[point1].date()), "first_top"),
+                PatternPoint(between1, prices[between1], str(dates[between1].date()), "valley"),
+                PatternPoint(point2, prices[point2], str(dates[point2].date()), "second_top"),
+                PatternPoint(between2, prices[between2], str(dates[between2].date()), "valley"),
+                PatternPoint(point3, prices[point3], str(dates[point3].date()), "third_top")
+            ]
+            neckline = min(prices[between1], prices[between2])
+            height = (prices[point1] + prices[point2] + prices[point3]) / 3 - neckline
+            target_price = neckline - height
+        else:  # Triple Bottom
+            points = [
+                PatternPoint(point1, prices[point1], str(dates[point1].date()), "first_bottom"),
+                PatternPoint(between1, prices[between1], str(dates[between1].date()), "peak"),
+                PatternPoint(point2, prices[point2], str(dates[point2].date()), "second_bottom"),
+                PatternPoint(between2, prices[between2], str(dates[between2].date()), "peak"),
+                PatternPoint(point3, prices[point3], str(dates[point3].date()), "third_bottom")
+            ]
+            neckline = max(prices[between1], prices[between2])
+            height = neckline - (prices[point1] + prices[point2] + prices[point3]) / 3
+            target_price = neckline + height
+        
+        confidence = self._calculate_pattern_confidence(prices, points)
+        
+        return DetectedPattern(
+            pattern_type=pattern_type,
+            confidence=confidence,
+            start_date=str(dates[point1].date()),
+            end_date=str(dates[point3].date()),
+            points=points,
+            neckline=neckline,
+            target_price=target_price,
+            stop_loss=neckline if pattern_type == PatternType.TRIPLE_TOP else neckline,
+            description=f"{pattern_type.value.replace('_', ' ').title()} pattern with {len(points)} key points"
+        )
+
+    def _create_wedge_pattern(self, data: pd.DataFrame, peaks: List[int], valleys: List[int], pattern_type: PatternType) -> DetectedPattern:
+        """Create a wedge pattern object."""
+        prices = data[data.columns[3]].values
+        dates = data.index
+        
+        all_points = []
+        for i, peak in enumerate(peaks):
+            all_points.append(PatternPoint(peak, prices[peak], str(dates[peak].date()), f"peak_{i+1}"))
+        for i, valley in enumerate(valleys):
+            all_points.append(PatternPoint(valley, prices[valley], str(dates[valley].date()), f"valley_{i+1}"))
+        
+        # Sort points by index
+        all_points.sort(key=lambda x: x.index)
+        
+        start_idx = min(peaks + valleys)
+        end_idx = max(peaks + valleys)
+        
+        confidence = self._calculate_pattern_confidence(prices, all_points)
+        
+        return DetectedPattern(
+            pattern_type=pattern_type,
+            confidence=confidence,
+            start_date=str(dates[start_idx].date()),
+            end_date=str(dates[end_idx].date()),
+            points=all_points,
+            neckline=None,
+            target_price=None,
+            stop_loss=None,
+            description=f"{pattern_type.value.replace('_', ' ').title()} pattern"
+        )
+
+    def _create_rectangle_pattern(self, data: pd.DataFrame, peaks: List[int], valleys: List[int]) -> DetectedPattern:
+        """Create a rectangle pattern object."""
+        prices = data[data.columns[3]].values
+        dates = data.index
+        
+        points = []
+        for i, peak in enumerate(peaks):
+            points.append(PatternPoint(peak, prices[peak], str(dates[peak].date()), f"resistance_{i+1}"))
+        for i, valley in enumerate(valleys):
+            points.append(PatternPoint(valley, prices[valley], str(dates[valley].date()), f"support_{i+1}"))
+        
+        points.sort(key=lambda x: x.index)
+        
+        start_idx = min(peaks + valleys)
+        end_idx = max(peaks + valleys)
+        
+        resistance = sum(prices[p] for p in peaks) / len(peaks)
+        support = sum(prices[v] for v in valleys) / len(valleys)
+        
+        confidence = self._calculate_pattern_confidence(prices, points)
+        
+        return DetectedPattern(
+            pattern_type=PatternType.RECTANGLE,
+            confidence=confidence,
+            start_date=str(dates[start_idx].date()),
+            end_date=str(dates[end_idx].date()),
+            points=points,
+            neckline=(resistance + support) / 2,
+            target_price=None,
+            stop_loss=None,
+            description="Rectangle/Channel pattern with horizontal support and resistance"
+        )
+
+    def _create_rounding_pattern(self, data: pd.DataFrame, start_idx: int, end_idx: int, 
+                               key_point: int, pattern_type: PatternType) -> DetectedPattern:
+        """Create a rounding pattern object."""
+        prices = data[data.columns[3]].values
+        dates = data.index
+        
+        points = [
+            PatternPoint(start_idx, prices[start_idx], str(dates[start_idx].date()), "start"),
+            PatternPoint(key_point, prices[key_point], str(dates[key_point].date()), "key_point"),
+            PatternPoint(end_idx-1, prices[end_idx-1], str(dates[end_idx-1].date()), "end")
+        ]
+        
+        confidence = self._calculate_pattern_confidence(prices, points)
+        
+        return DetectedPattern(
+            pattern_type=pattern_type,
+            confidence=confidence,
+            start_date=str(dates[start_idx].date()),
+            end_date=str(dates[end_idx-1].date()),
+            points=points,
+            neckline=None,
+            target_price=None,
+            stop_loss=None,
+            description=f"{pattern_type.value.replace('_', ' ').title()} pattern"
+        )
+
+    def _create_diamond_pattern(self, data: pd.DataFrame, peaks: List[int], valleys: List[int]) -> DetectedPattern:
+        """Create a diamond pattern object."""
+        prices = data[data.columns[3]].values
+        dates = data.index
+        
+        points = []
+        for i, peak in enumerate(peaks):
+            points.append(PatternPoint(peak, prices[peak], str(dates[peak].date()), f"peak_{i+1}"))
+        for i, valley in enumerate(valleys):
+            points.append(PatternPoint(valley, prices[valley], str(dates[valley].date()), f"valley_{i+1}"))
+        
+        points.sort(key=lambda x: x.index)
+        
+        start_idx = min(peaks + valleys)
+        end_idx = max(peaks + valleys)
+        
+        confidence = self._calculate_pattern_confidence(prices, points)
+        
+        return DetectedPattern(
+            pattern_type=PatternType.DIAMOND,
+            confidence=confidence,
+            start_date=str(dates[start_idx].date()),
+            end_date=str(dates[end_idx].date()),
+            points=points,
+            neckline=None,
+            target_price=None,
+            stop_loss=None,
+            description="Diamond pattern with expanding then contracting price action"
+        )
+
+    def _is_rounding_pattern(self, segment: np.ndarray, is_bottom: bool) -> bool:
+        """Check if a price segment forms a rounding pattern."""
+        if len(segment) < 10:
+            return False
+        
+        # Simple heuristic: check if middle values are more extreme than edges
+        start_val = segment[0]
+        end_val = segment[-1]
+        middle_vals = segment[len(segment)//4:3*len(segment)//4]
+        
+        if is_bottom:
+            # For rounding bottom, middle should be lower
+            return min(middle_vals) < min(start_val, end_val) * 0.98
+        else:
+            # For rounding top, middle should be higher
+            return max(middle_vals) > max(start_val, end_val) * 1.02
+
     def _calculate_pattern_confidence(self, prices: np.ndarray, points: List[PatternPoint]) -> float:
         """Calculate confidence score for a detected pattern."""
         if len(points) < 3:
