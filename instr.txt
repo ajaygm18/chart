@@ -1,0 +1,49 @@
+# Task: Build a Chart Pattern Detection System (Stock Market)
+
+I want you to generate **Python code** for a chart pattern detection system with the following requirements:
+
+## 1. Architecture
+- **Data Layer**: 
+  - Load OHLCV (Open, High, Low, Close, Volume) stock data (CSV or yfinance API).
+- **Preprocessing**: 
+  - Normalize/scale price data.
+  - Resample into time windows (1D, 1W, etc.).
+- **Pattern Detection Layer**:
+  - Implement functions to detect classical chart patterns (Head & Shoulders, Double Top, Double Bottom, Cup & Handle, Triangle, Flag).
+  - Use sliding windows + peak/valley detection.
+  - Optionally integrate ML (CNN/LSTM) for automated detection.
+- **Storage/Index**:
+  - Store detected patterns in a structured format (JSON or DB).
+- **Visualization Layer**:
+  - Use matplotlib/plotly to plot stock charts with annotations.
+  - Highlight detected patterns (mark breakout points, neckline, resistance/support levels).
+
+## 2. Instructions for Building
+- Step 1: Import libraries (pandas, numpy, matplotlib, scipy, sklearn, tensorflow/torch optional, plotly).
+- Step 2: Load and preprocess OHLCV data.
+- Step 3: Implement core algorithms:
+  - Local maxima/minima detection (scipy.signal.find_peaks).
+  - Pattern recognition rules (geometry of peaks/troughs).
+- Step 4: (Optional) Train ML model on labeled chart images.
+- Step 5: Build visualization functions that overlay detected patterns.
+- Step 6: Export results (JSON + charts).
+- Step 7: Wrap everything into reusable classes/modules.
+  
+## 3. Deliverables
+- Python scripts/modules:
+  - `data_loader.py`
+  - `pattern_detection.py`
+  - `visualization.py`
+  - `main.py` (or notebook for demo)
+- Example run should:
+  1. Load stock data (e.g., AAPL).
+  2. Detect chart patterns.
+  3. Visualize and save annotated chart.
+  4. Print JSON summary of patterns.
+
+## 4. Visualization Requirements
+- Use matplotlib (candlestick chart) + highlight detected pattern regions with rectangles/lines.
+- Add labels (e.g., "Head", "Left Shoulder", "Right Shoulder").
+- For ML-based approach: plot predicted pattern class probabilities.
+
+Please generate **detailed, modular, and well-documented Python code** following this design.
