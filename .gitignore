@@ -28,3 +28,10 @@ Thumbs.db
 *.tmp
 *.temp
 /tmp/
+
+# Output directories
+demo_output/
+results/
+test_output/
+output/
+*_output/
