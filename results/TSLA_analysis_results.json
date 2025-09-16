@@ -1,0 +1,1919 @@
+{
+  "analysis_info": {
+    "symbol": "TSLA",
+    "analysis_date": "2025-09-16T16:45:15.085859",
+    "data_period": {
+      "start": "2025-03-17",
+      "end": "2025-09-16",
+      "total_days": 127
+    }
+  },
+  "data_summary": {
+    "symbol": "TSLA",
+    "total_records": 127,
+    "date_range": {
+      "start": "2025-03-17",
+      "end": "2025-09-16"
+    },
+    "price_summary": {
+      "min_close": 221.86000061035156,
+      "max_close": 420.3800048828125,
+      "avg_close": 310.0048819714644,
+      "avg_volume": 108827269.93700787
+    }
+  },
+  "pattern_summary": {
+    "total_patterns": 45,
+    "patterns_by_type": {
+      "head_and_shoulders": 1,
+      "double_top": 13,
+      "double_bottom": 10,
+      "symmetrical_triangle": 15,
+      "pennant": 6
+    },
+    "average_confidence": 0.7444444444444445
+  },
+  "detected_patterns": [
+    {
+      "id": 1,
+      "type": "head_and_shoulders",
+      "confidence": 0.7,
+      "start_date": "2025-08-12",
+      "end_date": "2025-09-05",
+      "description": "Head And Shoulders pattern",
+      "neckline": 324.7349853515625,
+      "target_price": 297.7999572753906,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "102",
+          "price": 340.8399963378906,
+          "date": "2025-08-12",
+          "type": "left_shoulder"
+        },
+        {
+          "index": "109",
+          "price": 320.1099853515625,
+          "date": "2025-08-21",
+          "type": "valley"
+        },
+        {
+          "index": "112",
+          "price": 351.6700134277344,
+          "date": "2025-08-26",
+          "type": "head"
+        },
+        {
+          "index": "116",
+          "price": 329.3599853515625,
+          "date": "2025-09-02",
+          "type": "valley"
+        },
+        {
+          "index": "119",
+          "price": 350.8399963378906,
+          "date": "2025-09-05",
+          "type": "right_shoulder"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "double_top",
+      "confidence": 0.6,
+      "start_date": "2025-03-25",
+      "end_date": "2025-04-02",
+      "description": "Double Top pattern",
+      "neckline": 259.1600036621094,
+      "target_price": 232.8699951171875,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "6",
+          "price": 288.1400146484375,
+          "date": "2025-03-25",
+          "type": "first_top"
+        },
+        {
+          "index": "10",
+          "price": 259.1600036621094,
+          "date": "2025-03-31",
+          "type": "valley"
+        },
+        {
+          "index": "12",
+          "price": 282.760009765625,
+          "date": "2025-04-02",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "double_top",
+      "confidence": 0.7,
+      "start_date": "2025-03-25",
+      "end_date": "2025-04-29",
+      "description": "Double Top pattern",
+      "neckline": 221.86000061035156,
+      "target_price": 153.63499450683594,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "6",
+          "price": 288.1400146484375,
+          "date": "2025-03-25",
+          "type": "first_top"
+        },
+        {
+          "index": "16",
+          "price": 221.86000061035156,
+          "date": "2025-04-08",
+          "type": "valley"
+        },
+        {
+          "index": "30",
+          "price": 292.0299987792969,
+          "date": "2025-04-29",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "double_top",
+      "confidence": 0.7,
+      "start_date": "2025-05-16",
+      "end_date": "2025-06-23",
+      "description": "Double Top pattern",
+      "neckline": 284.70001220703125,
+      "target_price": 220.0700225830078,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "first_top"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "double_top",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-16",
+      "end_date": "2025-08-12",
+      "description": "Double Top pattern",
+      "neckline": 284.70001220703125,
+      "target_price": 223.99002075195312,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "first_top"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "102",
+          "price": 340.8399963378906,
+          "date": "2025-08-12",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "double_top",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-16",
+      "end_date": "2025-08-26",
+      "description": "Double Top pattern",
+      "neckline": 284.70001220703125,
+      "target_price": 218.57501220703125,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "first_top"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "112",
+          "price": 351.6700134277344,
+          "date": "2025-08-26",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "double_top",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-16",
+      "end_date": "2025-09-05",
+      "description": "Double Top pattern",
+      "neckline": 284.70001220703125,
+      "target_price": 218.99002075195312,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "first_top"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "119",
+          "price": 350.8399963378906,
+          "date": "2025-09-05",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "double_top",
+      "confidence": 0.7,
+      "start_date": "2025-06-11",
+      "end_date": "2025-07-23",
+      "description": "Double Top pattern",
+      "neckline": 293.94000244140625,
+      "target_price": 258.385009765625,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "first_top"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "88",
+          "price": 332.55999755859375,
+          "date": "2025-07-23",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "double_top",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-06-23",
+      "end_date": "2025-08-12",
+      "description": "Double Top pattern",
+      "neckline": 293.94000244140625,
+      "target_price": 243.12001037597656,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "first_top"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "102",
+          "price": 340.8399963378906,
+          "date": "2025-08-12",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "double_top",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-06-23",
+      "end_date": "2025-08-26",
+      "description": "Double Top pattern",
+      "neckline": 293.94000244140625,
+      "target_price": 237.7050018310547,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "first_top"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "112",
+          "price": 351.6700134277344,
+          "date": "2025-08-26",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "type": "double_top",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-06-23",
+      "end_date": "2025-09-05",
+      "description": "Double Top pattern",
+      "neckline": 293.94000244140625,
+      "target_price": 238.12001037597656,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "first_top"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "119",
+          "price": 350.8399963378906,
+          "date": "2025-09-05",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "double_top",
+      "confidence": 0.7,
+      "start_date": "2025-07-23",
+      "end_date": "2025-08-12",
+      "description": "Double Top pattern",
+      "neckline": 302.6300048828125,
+      "target_price": 268.5600128173828,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "88",
+          "price": 332.55999755859375,
+          "date": "2025-07-23",
+          "type": "first_top"
+        },
+        {
+          "index": "95",
+          "price": 302.6300048828125,
+          "date": "2025-08-01",
+          "type": "valley"
+        },
+        {
+          "index": "102",
+          "price": 340.8399963378906,
+          "date": "2025-08-12",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "type": "double_top",
+      "confidence": 0.7,
+      "start_date": "2025-08-12",
+      "end_date": "2025-09-05",
+      "description": "Double Top pattern",
+      "neckline": 320.1099853515625,
+      "target_price": 294.3799743652344,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "102",
+          "price": 340.8399963378906,
+          "date": "2025-08-12",
+          "type": "first_top"
+        },
+        {
+          "index": "109",
+          "price": 320.1099853515625,
+          "date": "2025-08-21",
+          "type": "valley"
+        },
+        {
+          "index": "119",
+          "price": 350.8399963378906,
+          "date": "2025-09-05",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "type": "double_top",
+      "confidence": 0.6,
+      "start_date": "2025-08-26",
+      "end_date": "2025-09-05",
+      "description": "Double Top pattern",
+      "neckline": 329.3599853515625,
+      "target_price": 307.4649658203125,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "112",
+          "price": 351.6700134277344,
+          "date": "2025-08-26",
+          "type": "first_top"
+        },
+        {
+          "index": "116",
+          "price": 329.3599853515625,
+          "date": "2025-09-02",
+          "type": "valley"
+        },
+        {
+          "index": "119",
+          "price": 350.8399963378906,
+          "date": "2025-09-05",
+          "type": "second_top"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "type": "double_bottom",
+      "confidence": 0.7,
+      "start_date": "2025-03-18",
+      "end_date": "2025-04-08",
+      "description": "Double Bottom pattern",
+      "neckline": 288.1400146484375,
+      "target_price": 352.69503021240234,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "1",
+          "price": 225.30999755859375,
+          "date": "2025-03-18",
+          "type": "first_bottom"
+        },
+        {
+          "index": "6",
+          "price": 288.1400146484375,
+          "date": "2025-03-25",
+          "type": "peak"
+        },
+        {
+          "index": "16",
+          "price": 221.86000061035156,
+          "date": "2025-04-08",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "type": "double_bottom",
+      "confidence": 0.7,
+      "start_date": "2025-03-18",
+      "end_date": "2025-04-21",
+      "description": "Double Bottom pattern",
+      "neckline": 288.1400146484375,
+      "target_price": 349.8750305175781,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "1",
+          "price": 225.30999755859375,
+          "date": "2025-03-18",
+          "type": "first_bottom"
+        },
+        {
+          "index": "6",
+          "price": 288.1400146484375,
+          "date": "2025-03-25",
+          "type": "peak"
+        },
+        {
+          "index": "24",
+          "price": 227.5,
+          "date": "2025-04-21",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "type": "double_bottom",
+      "confidence": 0.6,
+      "start_date": "2025-04-08",
+      "end_date": "2025-04-21",
+      "description": "Double Bottom pattern",
+      "neckline": 272.20001220703125,
+      "target_price": 319.7200241088867,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "16",
+          "price": 221.86000061035156,
+          "date": "2025-04-08",
+          "type": "first_bottom"
+        },
+        {
+          "index": "17",
+          "price": 272.20001220703125,
+          "date": "2025-04-09",
+          "type": "peak"
+        },
+        {
+          "index": "24",
+          "price": 227.5,
+          "date": "2025-04-21",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "type": "double_bottom",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-21",
+      "end_date": "2025-09-02",
+      "description": "Double Bottom pattern",
+      "neckline": 362.8900146484375,
+      "target_price": 393.7900390625,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "46",
+          "price": 334.6199951171875,
+          "date": "2025-05-21",
+          "type": "first_bottom"
+        },
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "peak"
+        },
+        {
+          "index": "116",
+          "price": 329.3599853515625,
+          "date": "2025-09-02",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "type": "double_bottom",
+      "confidence": 0.7,
+      "start_date": "2025-06-17",
+      "end_date": "2025-07-15",
+      "description": "Double Bottom pattern",
+      "neckline": 348.67999267578125,
+      "target_price": 383.79498291015625,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "first_bottom"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        },
+        {
+          "index": "82",
+          "price": 310.7799987792969,
+          "date": "2025-07-15",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "type": "double_bottom",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-06-17",
+      "end_date": "2025-08-21",
+      "description": "Double Bottom pattern",
+      "neckline": 348.67999267578125,
+      "target_price": 379.12998962402344,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "first_bottom"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        },
+        {
+          "index": "109",
+          "price": 320.1099853515625,
+          "date": "2025-08-21",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "type": "double_bottom",
+      "confidence": 0.7,
+      "start_date": "2025-07-07",
+      "end_date": "2025-08-01",
+      "description": "Double Bottom pattern",
+      "neckline": 332.55999755859375,
+      "target_price": 366.8349914550781,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "first_bottom"
+        },
+        {
+          "index": "88",
+          "price": 332.55999755859375,
+          "date": "2025-07-23",
+          "type": "peak"
+        },
+        {
+          "index": "95",
+          "price": 302.6300048828125,
+          "date": "2025-08-01",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "type": "double_bottom",
+      "confidence": 0.6,
+      "start_date": "2025-07-15",
+      "end_date": "2025-07-24",
+      "description": "Double Bottom pattern",
+      "neckline": 332.55999755859375,
+      "target_price": 357.0800018310547,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "82",
+          "price": 310.7799987792969,
+          "date": "2025-07-15",
+          "type": "first_bottom"
+        },
+        {
+          "index": "88",
+          "price": 332.55999755859375,
+          "date": "2025-07-23",
+          "type": "peak"
+        },
+        {
+          "index": "89",
+          "price": 305.29998779296875,
+          "date": "2025-07-24",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "type": "double_bottom",
+      "confidence": 0.7,
+      "start_date": "2025-07-15",
+      "end_date": "2025-08-01",
+      "description": "Double Bottom pattern",
+      "neckline": 332.55999755859375,
+      "target_price": 358.4149932861328,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "82",
+          "price": 310.7799987792969,
+          "date": "2025-07-15",
+          "type": "first_bottom"
+        },
+        {
+          "index": "88",
+          "price": 332.55999755859375,
+          "date": "2025-07-23",
+          "type": "peak"
+        },
+        {
+          "index": "95",
+          "price": 302.6300048828125,
+          "date": "2025-08-01",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "type": "double_bottom",
+      "confidence": 0.6,
+      "start_date": "2025-08-21",
+      "end_date": "2025-09-02",
+      "description": "Double Bottom pattern",
+      "neckline": 351.6700134277344,
+      "target_price": 378.60504150390625,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "109",
+          "price": 320.1099853515625,
+          "date": "2025-08-21",
+          "type": "first_bottom"
+        },
+        {
+          "index": "112",
+          "price": 351.6700134277344,
+          "date": "2025-08-26",
+          "type": "peak"
+        },
+        {
+          "index": "116",
+          "price": 329.3599853515625,
+          "date": "2025-09-02",
+          "type": "second_bottom"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-06",
+      "end_date": "2025-06-23",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "35",
+          "price": 275.3500061035156,
+          "date": "2025-05-06",
+          "type": "valley"
+        },
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "peak"
+        },
+        {
+          "index": "46",
+          "price": 334.6199951171875,
+          "date": "2025-05-21",
+          "type": "valley"
+        },
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "peak"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-06",
+      "end_date": "2025-06-23",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "35",
+          "price": 275.3500061035156,
+          "date": "2025-05-06",
+          "type": "valley"
+        },
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "peak"
+        },
+        {
+          "index": "46",
+          "price": 334.6199951171875,
+          "date": "2025-05-21",
+          "type": "valley"
+        },
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "peak"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-06",
+      "end_date": "2025-06-23",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "35",
+          "price": 275.3500061035156,
+          "date": "2025-05-06",
+          "type": "valley"
+        },
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "peak"
+        },
+        {
+          "index": "46",
+          "price": 334.6199951171875,
+          "date": "2025-05-21",
+          "type": "valley"
+        },
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "peak"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-06",
+      "end_date": "2025-06-23",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "35",
+          "price": 275.3500061035156,
+          "date": "2025-05-06",
+          "type": "valley"
+        },
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "peak"
+        },
+        {
+          "index": "46",
+          "price": 334.6199951171875,
+          "date": "2025-05-21",
+          "type": "valley"
+        },
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "peak"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-06",
+      "end_date": "2025-07-02",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "35",
+          "price": 275.3500061035156,
+          "date": "2025-05-06",
+          "type": "valley"
+        },
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "peak"
+        },
+        {
+          "index": "46",
+          "price": 334.6199951171875,
+          "date": "2025-05-21",
+          "type": "valley"
+        },
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "peak"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        },
+        {
+          "index": "74",
+          "price": 315.6499938964844,
+          "date": "2025-07-02",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-27",
+      "end_date": "2025-07-15",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "peak"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        },
+        {
+          "index": "74",
+          "price": 315.6499938964844,
+          "date": "2025-07-02",
+          "type": "peak"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "82",
+          "price": 310.7799987792969,
+          "date": "2025-07-15",
+          "type": "valley"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-27",
+      "end_date": "2025-07-15",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "peak"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        },
+        {
+          "index": "74",
+          "price": 315.6499938964844,
+          "date": "2025-07-02",
+          "type": "peak"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "82",
+          "price": 310.7799987792969,
+          "date": "2025-07-15",
+          "type": "valley"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-27",
+      "end_date": "2025-07-23",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "peak"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        },
+        {
+          "index": "74",
+          "price": 315.6499938964844,
+          "date": "2025-07-02",
+          "type": "peak"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "82",
+          "price": 310.7799987792969,
+          "date": "2025-07-15",
+          "type": "valley"
+        },
+        {
+          "index": "88",
+          "price": 332.55999755859375,
+          "date": "2025-07-23",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-06-23",
+      "end_date": "2025-08-12",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        },
+        {
+          "index": "74",
+          "price": 315.6499938964844,
+          "date": "2025-07-02",
+          "type": "peak"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "82",
+          "price": 310.7799987792969,
+          "date": "2025-07-15",
+          "type": "valley"
+        },
+        {
+          "index": "88",
+          "price": 332.55999755859375,
+          "date": "2025-07-23",
+          "type": "peak"
+        },
+        {
+          "index": "89",
+          "price": 305.29998779296875,
+          "date": "2025-07-24",
+          "type": "valley"
+        },
+        {
+          "index": "95",
+          "price": 302.6300048828125,
+          "date": "2025-08-01",
+          "type": "valley"
+        },
+        {
+          "index": "102",
+          "price": 340.8399963378906,
+          "date": "2025-08-12",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-06-23",
+      "end_date": "2025-08-12",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        },
+        {
+          "index": "74",
+          "price": 315.6499938964844,
+          "date": "2025-07-02",
+          "type": "peak"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "82",
+          "price": 310.7799987792969,
+          "date": "2025-07-15",
+          "type": "valley"
+        },
+        {
+          "index": "88",
+          "price": 332.55999755859375,
+          "date": "2025-07-23",
+          "type": "peak"
+        },
+        {
+          "index": "89",
+          "price": 305.29998779296875,
+          "date": "2025-07-24",
+          "type": "valley"
+        },
+        {
+          "index": "95",
+          "price": 302.6300048828125,
+          "date": "2025-08-01",
+          "type": "valley"
+        },
+        {
+          "index": "102",
+          "price": 340.8399963378906,
+          "date": "2025-08-12",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-06-23",
+      "end_date": "2025-08-12",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "peak"
+        },
+        {
+          "index": "74",
+          "price": 315.6499938964844,
+          "date": "2025-07-02",
+          "type": "peak"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "valley"
+        },
+        {
+          "index": "82",
+          "price": 310.7799987792969,
+          "date": "2025-07-15",
+          "type": "valley"
+        },
+        {
+          "index": "88",
+          "price": 332.55999755859375,
+          "date": "2025-07-23",
+          "type": "peak"
+        },
+        {
+          "index": "89",
+          "price": 305.29998779296875,
+          "date": "2025-07-24",
+          "type": "valley"
+        },
+        {
+          "index": "95",
+          "price": 302.6300048828125,
+          "date": "2025-08-01",
+          "type": "valley"
+        },
+        {
+          "index": "102",
+          "price": 340.8399963378906,
+          "date": "2025-08-12",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7,
+      "start_date": "2025-08-21",
+      "end_date": "2025-09-05",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "109",
+          "price": 320.1099853515625,
+          "date": "2025-08-21",
+          "type": "valley"
+        },
+        {
+          "index": "112",
+          "price": 351.6700134277344,
+          "date": "2025-08-26",
+          "type": "peak"
+        },
+        {
+          "index": "116",
+          "price": 329.3599853515625,
+          "date": "2025-09-02",
+          "type": "valley"
+        },
+        {
+          "index": "119",
+          "price": 350.8399963378906,
+          "date": "2025-09-05",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7,
+      "start_date": "2025-08-21",
+      "end_date": "2025-09-05",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "109",
+          "price": 320.1099853515625,
+          "date": "2025-08-21",
+          "type": "valley"
+        },
+        {
+          "index": "112",
+          "price": 351.6700134277344,
+          "date": "2025-08-26",
+          "type": "peak"
+        },
+        {
+          "index": "116",
+          "price": 329.3599853515625,
+          "date": "2025-09-02",
+          "type": "valley"
+        },
+        {
+          "index": "119",
+          "price": 350.8399963378906,
+          "date": "2025-09-05",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7,
+      "start_date": "2025-08-21",
+      "end_date": "2025-09-05",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "109",
+          "price": 320.1099853515625,
+          "date": "2025-08-21",
+          "type": "valley"
+        },
+        {
+          "index": "112",
+          "price": 351.6700134277344,
+          "date": "2025-08-26",
+          "type": "peak"
+        },
+        {
+          "index": "116",
+          "price": 329.3599853515625,
+          "date": "2025-09-02",
+          "type": "valley"
+        },
+        {
+          "index": "119",
+          "price": 350.8399963378906,
+          "date": "2025-09-05",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "type": "symmetrical_triangle",
+      "confidence": 0.7,
+      "start_date": "2025-08-21",
+      "end_date": "2025-09-05",
+      "description": "Symmetrical Triangle pattern",
+      "neckline": null,
+      "target_price": null,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": "109",
+          "price": 320.1099853515625,
+          "date": "2025-08-21",
+          "type": "valley"
+        },
+        {
+          "index": "112",
+          "price": 351.6700134277344,
+          "date": "2025-08-26",
+          "type": "peak"
+        },
+        {
+          "index": "116",
+          "price": 329.3599853515625,
+          "date": "2025-09-02",
+          "type": "valley"
+        },
+        {
+          "index": "119",
+          "price": 350.8399963378906,
+          "date": "2025-09-05",
+          "type": "peak"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "type": "pennant",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-04-16",
+      "end_date": "2025-06-05",
+      "description": "Pennant pattern",
+      "neckline": null,
+      "target_price": 444.0900115966797,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": 22,
+          "price": 241.5500030517578,
+          "date": "2025-04-16",
+          "type": "flagpole_start"
+        },
+        {
+          "index": 42,
+          "price": 342.82000732421875,
+          "date": "2025-05-15",
+          "type": "flagpole_end"
+        },
+        {
+          "index": "43",
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "consolidation_peak"
+        },
+        {
+          "index": "46",
+          "price": 334.6199951171875,
+          "date": "2025-05-21",
+          "type": "consolidation_valley"
+        },
+        {
+          "index": "49",
+          "price": 362.8900146484375,
+          "date": "2025-05-27",
+          "type": "consolidation_peak"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "consolidation_valley"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "type": "pennant",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-02",
+      "end_date": "2025-06-23",
+      "description": "Pennant pattern",
+      "neckline": null,
+      "target_price": 398.1700134277344,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": 33,
+          "price": 287.2099914550781,
+          "date": "2025-05-02",
+          "type": "flagpole_start"
+        },
+        {
+          "index": 53,
+          "price": 342.69000244140625,
+          "date": "2025-06-02",
+          "type": "flagpole_end"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "consolidation_valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "consolidation_peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "consolidation_valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "consolidation_peak"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "type": "pennant",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-05",
+      "end_date": "2025-06-23",
+      "description": "Pennant pattern",
+      "neckline": null,
+      "target_price": 408.27996826171875,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": 34,
+          "price": 280.260009765625,
+          "date": "2025-05-05",
+          "type": "flagpole_start"
+        },
+        {
+          "index": 54,
+          "price": 344.2699890136719,
+          "date": "2025-06-03",
+          "type": "flagpole_end"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "consolidation_valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "consolidation_peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "consolidation_valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "consolidation_peak"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "type": "pennant",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-06",
+      "end_date": "2025-06-23",
+      "description": "Pennant pattern",
+      "neckline": null,
+      "target_price": 388.7499694824219,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": 35,
+          "price": 275.3500061035156,
+          "date": "2025-05-06",
+          "type": "flagpole_start"
+        },
+        {
+          "index": 55,
+          "price": 332.04998779296875,
+          "date": "2025-06-04",
+          "type": "flagpole_end"
+        },
+        {
+          "index": "56",
+          "price": 284.70001220703125,
+          "date": "2025-06-05",
+          "type": "consolidation_valley"
+        },
+        {
+          "index": "60",
+          "price": 326.42999267578125,
+          "date": "2025-06-11",
+          "type": "consolidation_peak"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "consolidation_valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "consolidation_peak"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "type": "pennant",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-15",
+      "end_date": "2025-07-07",
+      "description": "Pennant pattern",
+      "neckline": null,
+      "target_price": 307.79998779296875,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": 42,
+          "price": 342.82000732421875,
+          "date": "2025-05-15",
+          "type": "flagpole_start"
+        },
+        {
+          "index": 62,
+          "price": 325.30999755859375,
+          "date": "2025-06-13",
+          "type": "flagpole_end"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "consolidation_valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "consolidation_peak"
+        },
+        {
+          "index": "74",
+          "price": 315.6499938964844,
+          "date": "2025-07-02",
+          "type": "consolidation_peak"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "consolidation_valley"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "type": "pennant",
+      "confidence": 0.7999999999999999,
+      "start_date": "2025-05-16",
+      "end_date": "2025-07-07",
+      "description": "Pennant pattern",
+      "neckline": null,
+      "target_price": 308.2799987792969,
+      "stop_loss": null,
+      "key_points": [
+        {
+          "index": 43,
+          "price": 349.9800109863281,
+          "date": "2025-05-16",
+          "type": "flagpole_start"
+        },
+        {
+          "index": 63,
+          "price": 329.1300048828125,
+          "date": "2025-06-16",
+          "type": "flagpole_end"
+        },
+        {
+          "index": "64",
+          "price": 316.3500061035156,
+          "date": "2025-06-17",
+          "type": "consolidation_valley"
+        },
+        {
+          "index": "67",
+          "price": 348.67999267578125,
+          "date": "2025-06-23",
+          "type": "consolidation_peak"
+        },
+        {
+          "index": "74",
+          "price": 315.6499938964844,
+          "date": "2025-07-02",
+          "type": "consolidation_peak"
+        },
+        {
+          "index": "76",
+          "price": 293.94000244140625,
+          "date": "2025-07-07",
+          "type": "consolidation_valley"
+        }
+      ]
+    }
+  ]
+}
