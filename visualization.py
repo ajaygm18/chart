@@ -78,20 +78,13 @@ class ChartVisualizer:
         fig, (ax1, ax2) = plt.subplots(2, 1, figsize=self.figsize, 
                                       gridspec_kw={'height_ratios': [3, 1]})
         
-        # Prepare data
-        dates = data.index
-        opens = data['open'].values
-        highs = data['high'].values
-        lows = data['low'].values
-        closes = data['close'].values
-        volumes = data['volume'].values
-        
-        # Plot candlesticks
-        self._draw_candlesticks(ax1, dates, opens, highs, lows, closes)
+        # Plot simple line chart instead of candlesticks to avoid timezone issues
+        ax1.plot(data.index, data['close'], linewidth=2, color='blue', label='Close Price')
+        ax1.fill_between(data.index, data['low'], data['high'], alpha=0.3, color='lightblue', label='High-Low Range')
         
         # Plot volume
-        colors = ['red' if closes[i] < opens[i] else 'green' for i in range(len(closes))]
-        ax2.bar(dates, volumes, color=colors, alpha=0.7, width=0.8)
+        colors = ['red' if data['close'].iloc[i] < data['open'].iloc[i] else 'green' for i in range(len(data))]
+        ax2.bar(data.index, data['volume'], color=colors, alpha=0.7, width=0.8)
         ax2.set_ylabel('Volume')
         ax2.tick_params(axis='x', rotation=45)
         
@@ -135,8 +128,19 @@ class ChartVisualizer:
             body_height = abs(close_price - open_price)
             body_bottom = min(open_price, close_price)
             
-            rect = Rectangle((date - pd.Timedelta(hours=8), body_bottom), 
-                           pd.Timedelta(hours=16), body_height,
+            # Calculate width as a fraction of the time range
+            if len(dates) > 1:
+                if i == 0:
+                    width = (dates[i+1] - dates[i]) * 0.6
+                elif i == len(dates) - 1:
+                    width = (dates[i] - dates[i-1]) * 0.6
+                else:
+                    width = min((dates[i+1] - dates[i]), (dates[i] - dates[i-1])) * 0.6
+            else:
+                width = pd.Timedelta(hours=16)
+            
+            rect = Rectangle((date - width/2, body_bottom), 
+                           width, body_height,
                            facecolor=color, alpha=0.7, edgecolor='black', linewidth=0.5)
             ax.add_patch(rect)
             
@@ -149,6 +153,18 @@ class ChartVisualizer:
             start_date = pd.to_datetime(pattern.start_date)
             end_date = pd.to_datetime(pattern.end_date)
             
+            # Ensure timezone compatibility
+            if data.index.tz is not None:
+                if start_date.tz is None:
+                    start_date = start_date.tz_localize(data.index.tz)
+                if end_date.tz is None:
+                    end_date = end_date.tz_localize(data.index.tz)
+            else:
+                if start_date.tz is not None:
+                    start_date = start_date.tz_localize(None)
+                if end_date.tz is not None:
+                    end_date = end_date.tz_localize(None)
+            
             # Find price range for the pattern
             pattern_data = data[(data.index >= start_date) & (data.index <= end_date)]
             if pattern_data.empty:
@@ -158,29 +174,28 @@ class ChartVisualizer:
             max_price = pattern_data[['high', 'close']].max().max()
             price_range = max_price - min_price
             
-            # Draw pattern boundary rectangle
-            rect = FancyBboxPatch(
-                (start_date, min_price - price_range * 0.05),
-                (end_date - start_date).total_seconds() / (24 * 3600),
-                price_range * 1.1,
-                boxstyle="round,pad=0.01",
-                facecolor=color,
-                alpha=0.15,
-                edgecolor=color,
-                linewidth=2
-            )
-            ax.add_patch(rect)
+            # Draw pattern boundary as vertical lines
+            ax.axvline(x=start_date, color=color, linestyle='--', alpha=0.8, linewidth=2)
+            ax.axvline(x=end_date, color=color, linestyle='--', alpha=0.8, linewidth=2)
+            
+            # Fill pattern area
+            pattern_close = pattern_data['close'] if not pattern_data.empty else []
+            if not pattern_data.empty:
+                ax.fill_between(pattern_data.index, pattern_data['low'], pattern_data['high'], 
+                               alpha=0.2, color=color)
             
             # Add pattern label
-            label_y = max_price + price_range * 0.02
-            ax.annotate(
-                f"{pattern.pattern_type.value.replace('_', ' ').title()}\n(Conf: {pattern.confidence:.2f})",
-                xy=(start_date + (end_date - start_date) / 2, label_y),
-                xytext=(10, 10), textcoords='offset points',
-                bbox=dict(boxstyle="round,pad=0.3", facecolor=color, alpha=0.7),
-                fontsize=9, fontweight='bold', color='white',
-                ha='center'
-            )
+            if not pattern_data.empty:
+                label_y = pattern_data['high'].max() + price_range * 0.02
+                label_x = start_date + (end_date - start_date) / 2
+                ax.annotate(
+                    f"{pattern.pattern_type.value.replace('_', ' ').title()}\n(Conf: {pattern.confidence:.2f})",
+                    xy=(label_x, label_y),
+                    xytext=(10, 10), textcoords='offset points',
+                    bbox=dict(boxstyle="round,pad=0.3", facecolor=color, alpha=0.7),
+                    fontsize=9, fontweight='bold', color='white',
+                    ha='center'
+                )
             
             # Annotate key points
             self._annotate_pattern_points(ax, pattern, color)
@@ -194,21 +209,26 @@ class ChartVisualizer:
     def _annotate_pattern_points(self, ax, pattern: DetectedPattern, color: str):
         """Annotate key points of a pattern."""
         for point in pattern.points:
-            # Convert point index to date (assuming daily data)
-            point_date = pd.to_datetime(pattern.start_date) + pd.Timedelta(days=point.index)
-            
-            # Plot the point
-            ax.plot(point_date, point.price, 'o', color=color, markersize=8, 
-                   markeredgecolor='white', markeredgewidth=2)
-            
-            # Add point label
-            ax.annotate(
-                point.type.replace('_', ' ').title(),
-                xy=(point_date, point.price),
-                xytext=(5, 15), textcoords='offset points',
-                fontsize=8, color=color, fontweight='bold',
-                bbox=dict(boxstyle="round,pad=0.2", facecolor='white', alpha=0.8)
-            )
+            # Use the actual date from the point instead of calculating
+            try:
+                point_date = pd.to_datetime(point.date)
+                
+                # Plot the point
+                ax.plot(point_date, point.price, 'o', color=color, markersize=8, 
+                       markeredgecolor='white', markeredgewidth=2)
+                
+                # Add point label
+                ax.annotate(
+                    point.type.replace('_', ' ').title(),
+                    xy=(point_date, point.price),
+                    xytext=(5, 15), textcoords='offset points',
+                    fontsize=8, color=color, fontweight='bold',
+                    bbox=dict(boxstyle="round,pad=0.2", facecolor='white', alpha=0.8)
+                )
+            except Exception as e:
+                # Skip problematic points
+                logger.warning(f"Could not annotate point: {e}")
+                continue
             
     def _plot_plotly_candlestick(self, data: pd.DataFrame, patterns: List[DetectedPattern],
                                 title: str, save_path: Optional[str]) -> None:
@@ -283,8 +303,24 @@ class ChartVisualizer:
             start_date = pattern.start_date
             end_date = pattern.end_date
             
+            # Convert to pandas datetime for comparison
+            start_dt = pd.to_datetime(start_date)
+            end_dt = pd.to_datetime(end_date)
+            
+            # Ensure timezone compatibility
+            if data.index.tz is not None:
+                if start_dt.tz is None:
+                    start_dt = start_dt.tz_localize(data.index.tz)
+                if end_dt.tz is None:
+                    end_dt = end_dt.tz_localize(data.index.tz)
+            else:
+                if start_dt.tz is not None:
+                    start_dt = start_dt.tz_localize(None)
+                if end_dt.tz is not None:
+                    end_dt = end_dt.tz_localize(None)
+            
             # Find price range for the pattern
-            pattern_data = data[(data.index >= start_date) & (data.index <= end_date)]
+            pattern_data = data[(data.index >= start_dt) & (data.index <= end_dt)]
             if pattern_data.empty:
                 continue
                 
@@ -409,6 +445,18 @@ class ChartVisualizer:
         start_date = pd.to_datetime(pattern.start_date)
         end_date = pd.to_datetime(pattern.end_date)
         
+        # Ensure timezone compatibility
+        if data.index.tz is not None:
+            if start_date.tz is None:
+                start_date = start_date.tz_localize(data.index.tz)
+            if end_date.tz is None:
+                end_date = end_date.tz_localize(data.index.tz)
+        else:
+            if start_date.tz is not None:
+                start_date = start_date.tz_localize(None)
+            if end_date.tz is not None:
+                end_date = end_date.tz_localize(None)
+        
         # Extend the view a bit before and after the pattern
         buffer_days = (end_date - start_date).days // 4
         view_start = start_date - pd.Timedelta(days=buffer_days)
@@ -430,19 +478,28 @@ class ChartVisualizer:
         
         # Mark key points
         for point in pattern.points:
-            # Approximate date from index (this is a simplification)
-            point_date = start_date + pd.Timedelta(days=point.index)
-            if point_date in pattern_data.index:
-                ax.plot(point_date, point.price, 'o', markersize=10, 
-                       color=self.pattern_colors.get(pattern.pattern_type, '#666666'),
-                       markeredgecolor='white', markeredgewidth=2)
-                
-                # Add label
-                ax.annotate(point.type.replace('_', ' ').title(),
-                           xy=(point_date, point.price),
-                           xytext=(10, 10), textcoords='offset points',
-                           bbox=dict(boxstyle="round,pad=0.3", facecolor='white', alpha=0.8),
-                           fontsize=10, fontweight='bold')
+            try:
+                point_date = pd.to_datetime(point.date)
+                # Ensure timezone compatibility
+                if data.index.tz is not None and point_date.tz is None:
+                    point_date = point_date.tz_localize(data.index.tz)
+                elif data.index.tz is None and point_date.tz is not None:
+                    point_date = point_date.tz_localize(None)
+                    
+                if point_date in pattern_data.index:
+                    ax.plot(point_date, point.price, 'o', markersize=10, 
+                           color=self.pattern_colors.get(pattern.pattern_type, '#666666'),
+                           markeredgecolor='white', markeredgewidth=2)
+                    
+                    # Add label
+                    ax.annotate(point.type.replace('_', ' ').title(),
+                               xy=(point_date, point.price),
+                               xytext=(10, 10), textcoords='offset points',
+                               bbox=dict(boxstyle="round,pad=0.3", facecolor='white', alpha=0.8),
+                               fontsize=10, fontweight='bold')
+            except Exception as e:
+                logger.warning(f"Could not mark point {point.type}: {e}")
+                continue
         
         # Add neckline if exists
         if pattern.neckline:
